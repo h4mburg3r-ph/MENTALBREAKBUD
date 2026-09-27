@@ -1,4 +1,4 @@
-package com.example.repov1.quarter2nd;
+package com.example.repov1.quarter2nd.minipeta2;
 
 import org.junit.Test;
 public class limMinipetaCode {
