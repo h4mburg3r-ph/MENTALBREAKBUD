@@ -2,6 +2,7 @@ package com.example.repov1;
 
 import java.util.Scanner;
 
+// Infraction class
 class Infraction {
     String description;
     String date;
@@ -12,6 +13,7 @@ class Infraction {
     }
 }
 
+// Account class
 class Account {
     String studentName;
     int studentID;
@@ -54,6 +56,7 @@ class Account {
     }
 }
 
+// Main class (Gawing 'public class Main' kung Main.java ang filename mo)
 class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
