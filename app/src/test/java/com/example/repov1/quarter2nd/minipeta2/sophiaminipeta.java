@@ -1,7 +1,7 @@
 package com.example.repov1.quarter2nd.minipeta2;
 
 import org.junit.Test;
-//DIGITAL PROFILE
+
 public class sophiaminipeta {
     @Test
     public void printMyProfile() {
