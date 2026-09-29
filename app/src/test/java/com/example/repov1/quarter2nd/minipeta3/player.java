@@ -1,5 +1,4 @@
 package com.example.repov1.quarter2nd.minipeta3;
-package com.example.arcade;
 
 import java.util.ArrayList;
 
