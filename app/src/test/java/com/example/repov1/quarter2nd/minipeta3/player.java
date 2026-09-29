@@ -1,10 +1,12 @@
 package com.example.repov1.quarter2nd.minipeta3;
+package com.example.arcade;
+
 import java.util.ArrayList;
 
-public class player {
-    private String playerName;
-    private String playerID;
-    private ArrayList<GameRecord> gameRecords;
+public class Player {
+    private final String playerName;
+    private final String playerID;
+    private final ArrayList<ArcadeSystemRecord> gameRecords;
 
     public Player(String name, String ID) {
         this.playerName = name;
@@ -20,7 +22,7 @@ public class player {
         return playerID;
     }
 
-    public void addGameRecord(GameRecord record) {
+    public void addGameRecord(ArcadeSystemRecord record) {
         gameRecords.add(record);
     }
 
@@ -30,7 +32,7 @@ public class player {
             return;
         }
 
-        for (GameRecord record : gameRecords) {
+        for (ArcadeSystemRecord record : gameRecords) {
             System.out.println(record);
         }
     }
