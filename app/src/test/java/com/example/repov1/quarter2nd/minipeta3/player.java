@@ -1,7 +1,7 @@
 package com.example.repov1.quarter2nd.minipeta3;
 
 import java.util.ArrayList;
-
+//Step 2 Player Profile Class
 public class player {
     private final String playerName;
     private final String playerID;
