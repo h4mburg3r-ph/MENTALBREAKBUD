@@ -1,7 +1,7 @@
 package com.example.repov1.quarter2nd.minipeta3;
 import java.util.ArrayList;
 
-public class Player {
+public class player {
     private String playerName;
     private String playerID;
     private ArrayList<GameRecord> gameRecords;
