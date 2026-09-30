@@ -1,79 +1,14 @@
 package com.example.repov1.quarter2nd.minipeta3;
 
-import java.util.ArrayList;
-
+import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+import static org.junit.Assert.assertEquals;
+
 public class Main {
-
-    // --- INNER CLASS 1: PlayerProfile ---
-    public static class PlayerProfile {
-        private String name;
-        private String id;
-        private List<ArcadeSystemRecord> gameRecords;
-
-        public PlayerProfile(String name, String id) {
-            this.name = name;
-            this.id = id;
-            this.gameRecords = new ArrayList<>();
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getID() {
-            return id;
-        }
-
-        public void addGameRecord(ArcadeSystemRecord record) {
-            gameRecords.add(record);
-        }
-
-        public void printGameRecords() {
-            if (gameRecords.isEmpty()) {
-                System.out.println("No records found for this player.");
-                return;
-            }
-            for (ArcadeSystemRecord record : gameRecords) {
-                System.out.println(" - " + record);
-            }
-        }
-    }
-
-    // --- INNER CLASS 2: ArcadeSystemRecord ---
-    public static class ArcadeSystemRecord {
-        private String gameName;
-        private int score;
-        private LocalDateTime timestamp;
-
-        public ArcadeSystemRecord(String gameName, int score, LocalDateTime timestamp) {
-            this.gameName = gameName;
-            this.score = score;
-            this.timestamp = timestamp;
-        }
-
-        public String getGameName() {
-            return gameName;
-        }
-
-        public int getScore() {
-            return score;
-        }
-
-        public LocalDateTime getTimestamp() {
-            return timestamp;
-        }
-
-        @Override
-        public String toString() {
-            return "Game: " + gameName + " | Score: " + score + " | Date: " + timestamp;
-        }
-    }
 
     // --- MAIN METHOD & LOGIC ---
     public static void main(String[] args) {
@@ -82,8 +17,24 @@ public class Main {
         system.start(scanner);
     }
 
+    @Test
+    public void testArcadeSystemFlow() {
+        ArrayList<Player> players = new ArrayList<>();
+        Player p = new Player("Test Player", "P001");
+        players.add(p);
+
+        ArcadeRecord record = new ArcadeRecord("Pac-Man", 1500, LocalDateTime.now());
+        p.addGameRecord(record);
+
+        assertEquals("Test Player", p.getName());
+        assertEquals("P001", p.getID());
+        assertEquals(1, p.getGameRecords().size());
+        assertEquals("Pac-Man", p.getGameRecords().get(0).getGameName());
+        assertEquals(1500, p.getGameRecords().get(0).getScore());
+    }
+
     public void start(Scanner scanner) {
-        ArrayList<PlayerProfile> players = new ArrayList<>();
+        ArrayList<Player> players = new ArrayList<>();
 
         while (true) {
             System.out.println("\n===== ARCADE SYSTEM =====");
@@ -111,7 +62,7 @@ public class Main {
         }
     }
 
-    public static void createPlayer(Scanner scanner, ArrayList<PlayerProfile> players) {
+    public static void createPlayer(Scanner scanner, ArrayList<Player> players) {
         System.out.println("\n===== CREATE PLAYER =====");
 
         System.out.print("Player Name: ");
@@ -125,26 +76,26 @@ public class Main {
         System.out.print("Player ID: ");
         String id = scanner.nextLine();
 
-        for (PlayerProfile player : players) {
+        for (Player player : players) {
             if (player.getID().equals(id)) {
                 System.out.println("PLAYER ID ALREADY EXISTS.");
                 return;
             }
         }
 
-        players.add(new PlayerProfile(name, id));
+        players.add(new Player(name, id));
         System.out.println("Player successfully created!");
     }
 
-    public static void recordGameScore(Scanner scanner, ArrayList<PlayerProfile> players) {
+    public static void recordGameScore(Scanner scanner, ArrayList<Player> players) {
         System.out.println("\n===== RECORD GAME SCORE =====");
 
         System.out.print("Player ID: ");
         String id = scanner.nextLine();
 
-        PlayerProfile selectedPlayer = null;
+        Player selectedPlayer = null;
 
-        for (PlayerProfile player : players) {
+        for (Player player : players) {
             if (player.getID().equals(id)) {
                 selectedPlayer = player;
                 break;
@@ -175,19 +126,19 @@ public class Main {
         }
 
         LocalDateTime time = LocalDateTime.now();
-        ArcadeSystemRecord record = new ArcadeSystemRecord(gameName, score, time);
+        ArcadeRecord record = new ArcadeRecord(gameName, score, time);
 
         selectedPlayer.addGameRecord(record);
         System.out.println("Game score successfully recorded!");
     }
 
-    public static void printPlayerRecords(Scanner scanner, ArrayList<PlayerProfile> players) {
+    public static void printPlayerRecords(Scanner scanner, ArrayList<Player> players) {
         System.out.println("\n===== PLAYER RECORDS =====");
 
         System.out.print("Player ID: ");
         String id = scanner.nextLine();
 
-        for (PlayerProfile player : players) {
+        for (Player player : players) {
             if (player.getID().equals(id)) {
                 System.out.println("Player: " + player.getName());
                 player.printGameRecords();
@@ -198,7 +149,7 @@ public class Main {
         System.out.println("PLAYER NOT FOUND.");
     }
 
-    public static void printAllPlayers(ArrayList<PlayerProfile> players) {
+    public static void printAllPlayers(ArrayList<Player> players) {
         System.out.println("\n===== ALL PLAYERS =====");
 
         if (players.isEmpty()) {
@@ -206,12 +157,12 @@ public class Main {
             return;
         }
 
-        for (PlayerProfile player : players) {
+        for (Player player : players) {
             System.out.println("Name: " + player.getName() + ", ID: " + player.getID());
         }
     }
 
-    public static boolean decisionCompress(int choice, Scanner scanner, ArrayList<PlayerProfile> players) {
+    public static boolean decisionCompress(int choice, Scanner scanner, ArrayList<Player> players) {
         if (choice == 1) {
             createPlayer(scanner, players);
         } else if (choice == 2) {
