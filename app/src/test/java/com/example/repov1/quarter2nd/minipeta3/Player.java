@@ -3,7 +3,7 @@ package com.example.repov1.quarter2nd.minipeta3;
 import java.util.ArrayList;
 import java.util.List;
 
-// Step 2 Player Profile Class 
+// Step 2 Player Profile Class System
 public class Player {
     private final String playerName;
     private final String playerID;
