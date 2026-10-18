@@ -14,10 +14,10 @@
 
         <!-- Header -->
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="383dp"
+            android:layout_height="50dp"
             android:gravity="center"
-            android:text="WELCOME BACK!"
+            android:text="Mental Break Buddy"
             android:textColor="#174A9C"
             android:textSize="30sp"
             android:textStyle="bold" />
