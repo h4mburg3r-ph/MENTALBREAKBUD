@@ -96,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:buttonTint="#174A9C"
+                android:minHeight="48dp"
                 android:text="Remember me"
                 android:textColor="#45658A"
                 android:textSize="14sp" />
